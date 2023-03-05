@@ -55,22 +55,54 @@ async function addManager() {
     {
       type: 'input',
       name: 'name',
-      message: 'What is the manager\'s name?'
+      message: 'What is the manager\'s name?',
+      validate: function(input) {
+        if (isNaN(Number(input)) && typeof input === 'string' && input.trim().length !== 0) {
+          return true;
+        } else {
+          return 'Please enter a valid name';
+        }
+      }
     },
     {
       type: 'input',
       name: 'id',
-      message: 'What is the manager\'s ID?'
+      message: 'What is the manager\'s ID?',
+      validate: function(input) {
+        const isValidNumber = !isNaN(Number(input));
+        if (isValidNumber && input.trim().length !== 0) {
+          return true;
+        } else {
+          return 'Please enter a valid ID number';
+        }
+      }
     },
     {
       type: 'input',
       name: 'email',
-      message: 'What is the manager\'s email?'
+      message: 'What is the manager\'s email?',
+      validate: function(input) {
+        // validate email address
+        const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+        if (emailRegex.test(input)) {
+          return true;
+        } else {
+          return 'Please enter a valid email address';
+        }
+      }
     },
     {
       type: 'input',
       name: 'officeNumber',
-      message: 'What is the manager\'s office number?'
+      message: 'What is the manager\'s office number?',
+      validate: function(input) {
+        const isValidNumber = !isNaN(Number(input));
+        if (isValidNumber && input.trim().length !== 0) {
+          return true;
+        } else {
+          return 'Please enter a valid office number';
+        }
+      }
     }
   ])
     .then(managerAnswers => {
@@ -94,22 +126,53 @@ async function addEngineer() {
     {
       type: 'input',
       name: 'name',
-      message: 'What is the engineer\'s name?'
+      message: 'What is the engineer\'s name?',
+      validate: function(input) {
+        if (isNaN(Number(input)) && typeof input === 'string' && input.trim().length !== 0) {
+          return true;
+        } else {
+          return 'Please enter a valid name';
+        }
+      }
     },
     {
       type: 'input',
       name: 'id',
-      message: 'What is the engineer\'s ID?'
+      message: 'What is the engineer\'s ID?',
+      validate: function(input) {
+        const isValidNumber = !isNaN(Number(input));
+        if (isValidNumber && input.trim().length !== 0) {
+          return true;
+        } else {
+          return 'Please enter a valid ID number';
+        }
+      }
     },
     {
       type: 'input',
       name: 'email',
-      message: 'What is the engineer\'s email?'
+      message: 'What is the engineer\'s email?',
+      validate: function(input) {
+        // validate email address
+        const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+        if (emailRegex.test(input)) {
+          return true;
+        } else {
+          return 'Please enter a valid email address';
+        }
+      }
     },
     {
       type: 'input',
       name: 'github',
-      message: 'What is the engineer\'s GitHub username?'
+      message: 'What is the engineer\'s GitHub username?',
+      validate: function(input) {
+        if (typeof input === 'string' && input.trim().length !== 0) {
+          return true;
+        } else {
+          return 'Please enter a valid GitHub username';
+        }
+      }
     }
   ])
     .then(engineerAnswers => {
