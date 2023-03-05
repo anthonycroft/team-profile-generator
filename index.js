@@ -18,10 +18,11 @@ const writeFileAsync = util.promisify(fs.writeFile);
 // Create an empty array to store the team members
 let teamMembers = [];
 
+// Create a function to prompt the user for team member details
 async function promptUser() {
   try {
     const manager = await addTeamMember('Manager');
-    console.log('Manager has been added!');
+    // console.log('Manager has been added!');
     let moreMembers = true;
     while (moreMembers) {
       const memberType = await inquirer.prompt([
@@ -40,7 +41,6 @@ async function promptUser() {
       }
 
       const member = await addTeamMember(memberType.memberType);
-      console.log(`${memberType.memberType} has been added!`);
     }
     return teamMembers;
   } catch (error) {
@@ -48,8 +48,9 @@ async function promptUser() {
   }
 }
 
+// Add a team manager to the teamMembers array
 async function addManager() {
-  // prompt user for manager details and add to team
+// prompt user for manager details and add to team
  await inquirer.prompt([
     {
       type: 'input',
@@ -73,7 +74,7 @@ async function addManager() {
     }
   ])
     .then(managerAnswers => {
-    console.log(managerAnswers);
+
     // Create a manager object and add it to the teamMembers array
     const teamManager = new Manager(
       managerAnswers.name,
@@ -86,6 +87,7 @@ async function addManager() {
   });
 }
 
+// Add an engineer to the teamMembers array
 async function addEngineer() {
   // prompt user for engineer details and add to team
   await inquirer.prompt([
@@ -111,7 +113,7 @@ async function addEngineer() {
     }
   ])
     .then(engineerAnswers => {
-    console.log(engineerAnswers);
+
     // Create an engineer object and add it to the teamMembers array
     let teamEngineer = new Engineer(
       engineerAnswers.name,
@@ -124,23 +126,51 @@ async function addEngineer() {
   });
 }
 
+// Add an intern to the teamMembers array
 async function addIntern() {
   // prompt user for intern details and add to team
   await inquirer.prompt([
     {
       type: 'input',
       name: 'name',
-      message: 'What is the intern\'s name?'
+      message: 'What is the intern\'s name?',
+      // validate entry
+      validate: function(input) {
+        if (isNaN(Number(input)) && typeof input === 'string' && input.trim().length !== 0) {
+          return true;
+        } else {
+          return 'Please enter a valid name';
+        }
+      }
     },
     {
       type: 'input',
       name: 'id',
-      message: 'What is the intern\'s ID?'
+      message: 'What is the intern\'s ID?',
+      // validate entry
+      validate: function(input) {
+        const isValidNumber = !isNaN(Number(input));
+        if (isValidNumber && input.trim().length !== 0) {
+          return true;
+        } else {
+          return 'Please enter a valid ID number';
+        }
+      }
     },
     {
       type: 'input',
       name: 'email',
-      message: 'What is the intern\'s email?'
+      message: 'What is the intern\'s email?',
+      // validate entry
+      validate: function(input) {
+        // validate email address
+        const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+        if (emailRegex.test(input)) {
+          return true;
+        } else {
+          return 'Please enter a valid email address';
+        }
+      }
     },
     {
       type: 'input',
@@ -149,7 +179,7 @@ async function addIntern() {
     }
   ])
     .then(internAnswers => {
-    console.log(internAnswers);
+
     // Create an intern object and add it to the teamMembers array
     let teamIntern = new Intern(
       internAnswers.name,
@@ -162,7 +192,7 @@ async function addIntern() {
   });
 }
 
-
+// controls which 'Add team member' function is called based on the user's selection in 'promptUser'
 async function addTeamMember(teamMemberType) {
   if (teamMemberType === 'Manager') {
     await addManager();
@@ -178,11 +208,15 @@ const init = async () => {
   console.log('hi');
   try {
     const answers = await promptUser();
-    console.log('answers', answers);
 
-    await writeFileAsync('index.html', render(answers), 'utf8');
+    // Create the output directory if it doesn't exist
+    if (!fs.existsSync(OUTPUT_DIR)) {
+      fs.mkdirSync(OUTPUT_DIR, { recursive: true });
+    }
 
-    console.log('Successfully wrote to index.html');
+    await writeFileAsync(outputPath, render(answers), 'utf8');
+
+    console.log('Successfully wrote to team.html');
   } catch (err) {
     console.log(err);
   }
