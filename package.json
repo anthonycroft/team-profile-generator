@@ -1,0 +1,27 @@
+{
+  "name": "team-profile-generator",
+  "version": "1.0.0",
+  "description": "CLI to generate team profiles",
+  "main": "index.js",
+  "directories": {
+    "lib": "lib"
+  },
+  "scripts": {
+    "test": "jest"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/anthonycroft/team-profile-generator.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/anthonycroft/team-profile-generator/issues"
+  },
+  "homepage": "https://github.com/anthonycroft/team-profile-generator#readme",
+  "dependencies": {
+    "inquire": "^0.4.8",
+    "jest": "^29.4.3"
+  }
+}
