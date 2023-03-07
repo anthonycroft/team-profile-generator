@@ -12,7 +12,11 @@ The app is invoked by using the following command:
 ```bash node index.js```
 
 ## Dependencies
-The app uses the following external Javascript libraries:
+Initialise project folder:
+
+```bash npm init -y```
+
+Then install the following dependencies:
 
 [node](https://nodejs.org/en/)
 
@@ -37,7 +41,11 @@ The app can be tested using the following command:
 
 ## Screenshot:
 
+- output file:
+
 ![Team profile Generator Web Page](https://github.com/anthonycroft/team-profile-generator/blob/main/assets/images/team-profile-generator.png)
+
+- console view:
 
 ![Team profile Generator Console](https://github.com/anthonycroft/team-profile-generator/blob/main/assets/images/console-view.png)
 
