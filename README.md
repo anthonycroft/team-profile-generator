@@ -37,5 +37,7 @@ The app can be tested using the following command:
 
 ## Screenshot:
 
-![Team profile Generator Console Application](https://github.com/anthonycroft/team-profile-generator/blob/main/assets/images/team-profile-generator.png)
+![Team profile Generator Web Page](https://github.com/anthonycroft/team-profile-generator/blob/main/assets/images/team-profile-generator.png)
+
+![Team profile Generator Console](https://github.com/anthonycroft/team-profile-generator/blob/main/assets/images/console-view.png)
 
