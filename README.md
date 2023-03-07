@@ -39,7 +39,7 @@ The app can be tested using the following command:
 
 [Repository](https://github.com/anthonycroft/team-profile-generator)
 
-## Screenshot:
+## Screenshots:
 
 - output file:
 
