@@ -36,7 +36,7 @@ async function promptUser() {
 
       if (memberType.memberType === 'I don\'t want to add any more team members') {
         moreMembers = false;
-        console.log('Team roster is complete!')
+        console.log('Team Org Chart is complete!')
         break;
       }
 
