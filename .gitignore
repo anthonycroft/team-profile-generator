@@ -103,5 +103,5 @@ dist
 # TernJS port file
 .tern-port
 
-# Live Server file
-.vscode
+# Live Server directory settings
+.vscode/
